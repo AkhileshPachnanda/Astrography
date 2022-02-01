@@ -3,7 +3,7 @@ Entry for TechXplore - Codeverse 2022
 
 
 Included a .exe file incase you run into any errors while running direct source code.
-**exe might or might not show a virus notification when downloading i didn't get the time to text it but notmally it throws a warning**
+- **.exe file might or might not show a virus notification when downloading i didn't get the time to text it but notmally it throws a warning**
 
 Libraries used - *pygame, sys, os, random, math, pygame.locals*
 
