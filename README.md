@@ -18,8 +18,8 @@ Images and Music Used present in thier respective folder with credits to origina
 > 5. When Lives == 0, End Screen Appears.
 > 6. Game can be restarted by clicking again.
 
-[Game Trailer] (https://youtu.be/gm1dvu6F6F8)
-[Github Repository] - (https://github.com/AkhileshPachnanda/Astrography)
+[Game Trailer](https://youtu.be/gm1dvu6F6F8)
+[Github Repository](https://github.com/AkhileshPachnanda/Astrography)
 
 
 Info - For math functions and a few other things, took help from Stackoverflow, still the code & logic was written by me, not copy pasted.
