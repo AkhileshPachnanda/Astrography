@@ -22,14 +22,13 @@ started = False
 window = pygame.display.set_mode((WIDTH, HEIGHT), pygame.RESIZABLE)
 pygame.display.set_caption('Astrography')
 
-# helper functions to handle transformations
+# math functions to handle transformations
 def angle_to_vector(ang):
     return [math.cos(ang), -math.sin(ang)]
 
 def dist(p,q):
     return math.sqrt((p[0]-q[0])**2+(p[1]-q[1])**2)
 
-#Image information class
 class ImageInfo:
     def __init__(self, center, size, radius = 0, lifespan = None, animated = False):
         self.center = center
@@ -56,7 +55,6 @@ class ImageInfo:
     def get_animated(self):
         return self.animated
 
-# Ship class
 class Ship:
     def __init__(self, pos, vel, angle, image, thrust_image, info):
         self.pos = [pos[0]-45,pos[1]-45]
@@ -115,15 +113,13 @@ class Ship:
 
         self.vel[0] *= (1 - fric)
         self.vel[1] *= (1 - fric)
-
-        # update position
+        
         self.pos[0] = (self.pos[0] + self.vel[0]) % (WIDTH - self.radius)
         self.pos[1] = (self.pos[1] + self.vel[1]) % (HEIGHT - self.radius)
         
     def set_angle_vel(self, vel):
         self.angle_vel = vel
 
-# Sprite class
 class Sprite:
     def __init__(self, pos, vel, ang, ang_vel, image, info, sound = None):
         if sound:
@@ -162,10 +158,10 @@ class Sprite:
             canvas.blit(rot_center(self.image, self.angle), (int(self.pos[0] - self.radius), int(self.pos[1] - self.radius)))
     
     def update(self):
-        # update angle
+        
         self.angle += self.angle_vel
         
-        # update position
+     
         self.pos[0] = (self.pos[0] + self.vel[0]) % WIDTH
         self.pos[1] = (self.pos[1] + self.vel[1]) % HEIGHT
 
@@ -191,7 +187,7 @@ def load_sliced_sprites(w, h, filename):
 explosion_images = load_sliced_sprites(128, 128, 'explosion_blue.png')
 explosion_info = ImageInfo([64,64], [128,128], 64, 24, True)
 
-#load images
+#bg image
 nebula = pygame.image.load(os.path.join('images','bg (Custom).png'))
 
 #ship image
@@ -218,7 +214,7 @@ missile_sound.set_volume(1)
 thruster_sound = pygame.mixer.Sound(os.path.join('sounds','thrust.ogg'))
 thruster_sound.set_volume(1)
 
-#thrust sound
+#explosion sound
 explosion_sound = pygame.mixer.Sound(os.path.join('sounds','explosion.ogg'))
 explosion_sound.set_volume(1)
 
@@ -229,19 +225,15 @@ pygame.mixer.music.play()
 
 #splash screen
 splash = pygame.image.load(os.path.join('images','splash.png'))
-
-#splash screen
 splash = pygame.image.load(os.path.join('images','splash.png'))
 
 end_splash = pygame.image.load(os.path.join('images','end-splash.png')) 
 
-#create objects of classes
 Astrography = Ship([WIDTH//2, HEIGHT//2], [0,0], 0, ship_image, thrusted_ship_image, ship_info)
 rock_group = set([])
 missile_group = set([])
 explosion_group = set([])
 
-#process sprite group draw and update
 def process_sprite_group(canvas):
     
     for rock in rock_group:
@@ -256,10 +248,6 @@ def process_sprite_group(canvas):
     for explosion in explosion_group:
         explosion.draw(canvas)
 
-
-#collision
-
-#group collide method
 def group_collide(group,other_object):
     counter = len(group)
     
@@ -270,7 +258,6 @@ def group_collide(group,other_object):
             
     return counter - len(group)
 
-#group and group collide check method
 def group_group_collide(first_group, second_group):
     counter = 0
     
@@ -281,25 +268,19 @@ def group_group_collide(first_group, second_group):
 
     return counter
 
-
-#draw function of canvas
 def draw(canvas):
     global score,lives,started
     
     canvas.fill(BLACK)
     canvas.blit(nebula,(0,0))
 
-    #draw ship
     Astrography.draw(canvas)
 
     if started:
-        #show rocks and missile
         process_sprite_group(canvas)
-
-        #update ship
+        
         Astrography.update()
 
-        #collision check
         if group_collide(rock_group,Astrography) > 0:
             if lives > 1:
                 lives -= 1
@@ -318,7 +299,6 @@ def draw(canvas):
         canvas.blit(end_splash, (WIDTH//2 - 400, HEIGHT//2 - 350))
     
 
-    #draw Score
     myfont1 = pygame.font.SysFont("Roboto", 30)
     label1 = myfont1.render("Lives : "+str(lives), 1, (255,255,0))
     canvas.blit(label1, (50,20))
@@ -337,7 +317,6 @@ def rot_center(image, angle):
     rot_image = rot_image.subsurface(rot_rect).copy()
     return rot_image
     
-#keydown handler
 def keydown(event):
     ang_vel = 4.5
     
@@ -350,8 +329,6 @@ def keydown(event):
     if event.key == K_SPACE:
         Astrography.shoot()
             
-
-#keyup handler
 def keyup(event):
 
     if event.key in (K_LEFT,K_RIGHT):
@@ -400,7 +377,6 @@ def click(event):
         rock_group = set([])
         missile_group = set([])
 
-#game loop
 while True:
 
     draw(window)
