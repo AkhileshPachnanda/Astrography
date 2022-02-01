@@ -28,7 +28,6 @@ Official Entry for Ryan International School - Ghaziabad, Tech Event "TechXplore
 
 Made By Akhilesh Pachnanda - Ryan International School, Vasant Kunj.
 
-Made Within 68 hours.
 
 **Known Issues -**
 1. Problem with Window Resizing
