@@ -22,11 +22,7 @@ Images and Music Used present in thier respective folder with credits to origina
 - [Github Repository](https://github.com/AkhileshPachnanda/Astrography)
 
 
-Info - For math functions and a few other things, took help from Stackoverflow, still the code & logic was written by me, not copy pasted.
-
-Official Entry for Ryan International School - Ghaziabad, Tech Event "TechXplore" Codeverse - 2022
-
-Made By Akhilesh Pachnanda - Ryan International School, Vasant Kunj.
+Info - For math functions and a few other things, took help from Stackoverflow
 
 
 **Known Issues -**
